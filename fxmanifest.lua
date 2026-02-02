@@ -1,28 +1,81 @@
+--[[
+    ██╗     ██╗  ██╗██████╗        ██╗      ██████╗ ████████╗████████╗███████╗██████╗ ██╗   ██╗
+    ██║     ╚██╗██╔╝██╔══██╗      ██║     ██╔═══██╗╚══██╔══╝╚══██╔══╝██╔════╝██╔══██╗╚██╗ ██╔╝
+    ██║      ╚███╔╝ ██████╔╝█████╗██║     ██║   ██║   ██║      ██║   █████╗  ██████╔╝ ╚████╔╝ 
+    ██║      ██╔██╗ ██╔══██╗╚════╝██║     ██║   ██║   ██║      ██║   ██╔══╝  ██╔══██╗  ╚██╔╝  
+    ███████╗██╔╝ ██╗██║  ██║      ███████╗╚██████╔╝   ██║      ██║   ███████╗██║  ██║   ██║   
+    ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝      ╚══════╝ ╚═════╝    ╚═╝      ╚═╝   ╚══════╝╚═╝  ╚═╝   ╚═╝   
+                                                                                                
+    🐺 LXR Lottery System - FiveM Resource Manifest
+    
+    Multi-framework lottery system for RedM with automatic framework detection,
+    comprehensive security features, and full compatibility with LXR-Core, RSG-Core,
+    VORP, and other major frameworks.
+    
+    ═══════════════════════════════════════════════════════════════════════════════
+    
+    Developer:   iBoss21 / The Lux Empire
+    Website:     https://www.wolves.land
+    Discord:     https://discord.gg/CrKcWdfd3A
+    GitHub:      https://github.com/iBoss21
+    
+    © 2026 iBoss21 / The Lux Empire | wolves.land | All Rights Reserved
+]]
+
 fx_version 'cerulean'
-rdr3_warning 'I acknowledge that this is a prerelease build of RedM, and I am aware my resources *will* become incompatible once RedM ships.'
+rdr3_warning 'I acknowledge that this is a prerelease build of RedM, and I am aware my resources WILL become incompatible once RedM ships.'
 game 'rdr3'
 
-description 'mms-lottery'
-version '1.1.5'
-author 'Markus Mueller'
+-- ═══════════════════════════════════════════════════════════════════════════════
+-- RESOURCE METADATA
+-- ═══════════════════════════════════════════════════════════════════════════════
 
-client_scripts {
-	'client/client.lua'
-}
+name 'LXR Lottery System'
+description 'Multi-framework lottery system for RedM with automatic detection, security features, and comprehensive customization'
+author 'iBoss21 / The Lux Empire'
+version '2.0.0'
 
-server_scripts {
-	'server/server.lua',
-	'@oxmysql/lib/MySQL.lua',
-}
+-- ═══════════════════════════════════════════════════════════════════════════════
+-- LUA VERSION
+-- ═══════════════════════════════════════════════════════════════════════════════
+
+lua54 'yes'
+
+-- ═══════════════════════════════════════════════════════════════════════════════
+-- SHARED SCRIPTS (Loaded on both client and server)
+-- ═══════════════════════════════════════════════════════════════════════════════
+-- Scope: Configuration and framework adapter available to both sides
 
 shared_scripts {
     'config.lua',
+    'shared/framework.lua'
 }
 
-dependency {
-	'vorp_core',
-	'bcc-utils',
-	'feather-menu',
+-- ═══════════════════════════════════════════════════════════════════════════════
+-- CLIENT SCRIPTS (Loaded on client only)
+-- ═══════════════════════════════════════════════════════════════════════════════
+-- Scope: UI, prompts, NPCs, blips, and client-side interactions
+
+client_scripts {
+    'client/client.lua'
 }
 
-lua54 'yes'
+-- ═══════════════════════════════════════════════════════════════════════════════
+-- SERVER SCRIPTS (Loaded on server only)
+-- ═══════════════════════════════════════════════════════════════════════════════
+-- Scope: Database, money management, winner selection, security validation
+
+server_scripts {
+    '@oxmysql/lib/MySQL.lua',
+    'server/server.lua'
+}
+
+-- ═══════════════════════════════════════════════════════════════════════════════
+-- DEPENDENCIES (Optional - Framework detection handles these at runtime)
+-- ═══════════════════════════════════════════════════════════════════════════════
+-- Note: These are optional dependencies. The script will auto-detect which
+-- framework is running and adapt accordingly. No hard dependencies required.
+
+-- dependencies {
+--     'oxmysql'  -- Only oxmysql is required for database operations
+-- }
