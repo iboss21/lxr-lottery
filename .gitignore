@@ -1,0 +1,48 @@
+# LXR Lottery - Git Ignore File
+
+# OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# Temporary Files
+*.tmp
+*.bak
+*.log
+*.cache
+
+# Build Artifacts
+node_modules/
+dist/
+build/
+*.zip
+*.rar
+
+# Sensitive Data
+.env
+*.key
+*.pem
+config_local.lua
+
+# Testing
+test/
+tests/
+*.test.lua
+
+# Documentation Build
+docs/_build/
+docs/.doctrees/
+
+# Screenshots (if you want to keep them private until ready)
+# Uncomment if needed:
+# docs/assets/screenshots/*.png
+# docs/assets/screenshots/*.jpg
