@@ -72,10 +72,14 @@ CreateThread(function()
             local blipScale = station.blipScale or 0.2
             
             local blip = Citizen.InvokeNative(0x554D9D53F696D002, 1664425300, station.coords)
-            SetBlipSprite(blip, GetHashKey(blipSprite), true)
-            Citizen.InvokeNative(0x9CB1A1623062F402, blip, blipScale)
             
-            table.insert(CreatedBlips, blip)
+            -- Validate blip was created successfully before setting properties
+            if blip and blip ~= 0 then
+                SetBlipSprite(blip, GetHashKey(blipSprite), true)
+                -- SetBlipScale native - blipScale is already a float in Lua
+                Citizen.InvokeNative(0x9CB1A1623062F402, blip, blipScale)
+                table.insert(CreatedBlips, blip)
+            end
         end
     end
 end)
