@@ -76,7 +76,8 @@ CreateThread(function()
             -- Validate blip was created successfully before setting properties
             if blip and blip ~= 0 then
                 SetBlipSprite(blip, GetHashKey(blipSprite), true)
-                Citizen.InvokeNative(0x9CB1A1623062F402, blip, blipScale + 0.0)
+                -- SetBlipScale native - blipScale is already a float in Lua
+                Citizen.InvokeNative(0x9CB1A1623062F402, blip, blipScale)
                 table.insert(CreatedBlips, blip)
             end
         end
